@@ -30,7 +30,7 @@ namespace LT.DigitalOffice.FamilyService
 
         private readonly BaseServiceInfoConfig _serviceInfoConfig;
         private readonly RabbitMqConfig _rabbitMqConfig;
-        
+
         public IConfiguration Configuration { get; }
 
         #region private methods
@@ -39,11 +39,8 @@ namespace LT.DigitalOffice.FamilyService
         {
             (string username, string password) = RabbitMqCredentialsHelper.Get(_rabbitMqConfig, _serviceInfoConfig);
 
-            services.AddMassTransit(x=>
+            services.AddMassTransit(x =>
             {
-                //x.AddConsumer<>();
-                //x.AddConsumer<>();
-
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(_rabbitMqConfig.Host, "/", host =>
@@ -52,7 +49,6 @@ namespace LT.DigitalOffice.FamilyService
                         host.Password(password);
                     });
 
-                   // cfg.ReceiveEndpoint();
                 });
 
                 x.AddRequestClients(_rabbitMqConfig);
@@ -62,7 +58,7 @@ namespace LT.DigitalOffice.FamilyService
         }
 
         #endregion
-        
+
         #region public methods
 
         public Startup(IConfiguration configuration)
@@ -70,19 +66,19 @@ namespace LT.DigitalOffice.FamilyService
             Configuration = configuration;
 
             _serviceInfoConfig = Configuration
-                .GetSection(BaseServiceInfoConfig.SectionName)
-                .Get<BaseServiceInfoConfig>();
-            
+              .GetSection(BaseServiceInfoConfig.SectionName)
+              .Get<BaseServiceInfoConfig>();
+
             _rabbitMqConfig = Configuration
-                .GetSection(BaseServiceInfoConfig.SectionName)
-                .Get<RabbitMqConfig>();
+              .GetSection(BaseRabbitMqConfig.SectionName)
+              .Get<RabbitMqConfig>();
 
             Version = "1.0.0.0";
             Description = "FamilyService is an API intended to work with an information about workers' families.";
             StartTime = DateTime.UtcNow;
             ApiName = $"LT Digital Office - {_serviceInfoConfig.Name}";
         }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
@@ -124,7 +120,7 @@ namespace LT.DigitalOffice.FamilyService
                 .AddSqlServer(connStr)
                 .AddRabbitMqCheck();
 
-            ConfigureMassTransit(services);            
+            ConfigureMassTransit(services);
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
