@@ -2,7 +2,6 @@
 using LT.DigitalOffice.Kernel.Attributes;
 using LT.DigitalOffice.Kernel.EFSupport.Provider;
 
-
 namespace LT.DigitalOffice.FamilyService.Data.Provider
 {
     [AutoInject(InjectType.Scoped)]
