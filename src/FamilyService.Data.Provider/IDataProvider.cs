@@ -4,9 +4,9 @@ using LT.DigitalOffice.Kernel.EFSupport.Provider;
 
 namespace LT.DigitalOffice.FamilyService.Data.Provider
 {
-    [AutoInject(InjectType.Scoped)]
-    public interface IDataProvider : IBaseDataProvider
-    {
-        //DbSet<DbMembers> Members{get; set;}
-    }
+  [AutoInject(InjectType.Scoped)]
+  public interface IDataProvider : IBaseDataProvider
+  {
+    //DbSet<DbMembers> Members{get; set;}
+  }
 }
