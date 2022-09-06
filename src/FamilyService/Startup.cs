@@ -1,4 +1,12 @@
-﻿using MassTransit;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using MassTransit;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
@@ -13,8 +21,6 @@ using LT.DigitalOffice.Kernel.BrokerSupport.Configurations;
 using LT.DigitalOffice.Kernel.BrokerSupport.Middlewares.Token;
 using LT.DigitalOffice.FamilyService.Models.Dto.Configurations;
 using LT.DigitalOffice.FamilyService.Data.Provider.MsSql.Ef;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
 
 namespace LT.DigitalOffice.FamilyService
 {

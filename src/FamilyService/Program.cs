@@ -1,4 +1,8 @@
-﻿using Serilog;
+﻿using System;
+using Serilog;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace LT.DigitalOffice.FamilyService
 {
