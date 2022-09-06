@@ -20,7 +20,7 @@ using LT.DigitalOffice.Kernel.BrokerSupport.Extensions;
 using LT.DigitalOffice.Kernel.BrokerSupport.Configurations;
 using LT.DigitalOffice.Kernel.BrokerSupport.Middlewares.Token;
 using LT.DigitalOffice.FamilyService.Models.Dto.Configurations;
-using LT.DigitalOffice.FamilyService.Data.Provider.MsSql.Ef;
+using LT.DigitalOffice.FamilyService.Data.Provider;
 
 namespace LT.DigitalOffice.FamilyService
 {

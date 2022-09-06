@@ -18,8 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\FamilyService.Broker\FamilyService.Broker.csproj" />
     <ProjectReference Include="..\FamilyService.Business\FamilyService.Business.csproj" />
-    <ProjectReference Include="..\FamilyService.Data.Provider.MsSql.Ef\FamilyService.Data.Provider.MsSql.Ef.csproj" />
-    <ProjectReference Include="..\FamilyService.Data.Provider\FamilyService.Data.Provider.csproj" />
     <ProjectReference Include="..\FamilyService.Data\FamilyService.Data.csproj" />
     <ProjectReference Include="..\FamilyService.Mappers\FamilyService.Mappers.csproj" />
     <ProjectReference Include="..\FamilyService.Models.Db\FamilyService.Models.Db.csproj" />
