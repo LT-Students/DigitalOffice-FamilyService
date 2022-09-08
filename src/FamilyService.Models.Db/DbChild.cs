@@ -15,8 +15,7 @@ namespace LT.DigitalOffice.FamilyService.Models.Db
     public Guid Id { get; set; }
     public bool IsActive { get; set; }
 
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string Name { get; set; }
     public int Gender { get; set; }
     public DateTime BirthDate { get; set; }
     public string Info { get; set; }
@@ -34,11 +33,7 @@ namespace LT.DigitalOffice.FamilyService.Models.Db
         .HasKey(x => x.Id);
 
       builder
-        .Property(x => x.FirstName)
-        .IsRequired();
-
-      builder
-        .Property(x => x.LastName)
+        .Property(x => x.Name)
         .IsRequired();
 
       builder

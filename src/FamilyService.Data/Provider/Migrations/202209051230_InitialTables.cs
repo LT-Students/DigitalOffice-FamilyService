@@ -16,8 +16,7 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider.Migrations
         columns: table => new
         {
           Id = table.Column<Guid>(nullable: false),
-          FirstName = table.Column<string>(nullable: false, maxLength: 45),
-          LastName = table.Column<string>(nullable: false, maxLength: 45),
+          Name = table.Column<string>(nullable: false, maxLength: 45),
           Gender = table.Column<int>(nullable: false),
           BirthDate = table.Column<DateTime>(nullable: false),
           Info = table.Column<string>(nullable: false, maxLength: 300)
