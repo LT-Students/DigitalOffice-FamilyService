@@ -14,11 +14,11 @@ namespace LT.DigitalOffice.FamilyService.Models.Db
 
     public Guid Id { get; set; }
     public bool IsActive { get; set; }
-
     public string Name { get; set; }
     public int Gender { get; set; }
     public DateTime BirthDate { get; set; }
     public string Info { get; set; }
+
     public DbParent Parent { get; set; }
   }
 
