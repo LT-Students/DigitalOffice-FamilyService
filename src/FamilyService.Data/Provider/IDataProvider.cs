@@ -10,6 +10,5 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider
   public interface IDataProvider : IBaseDataProvider
   {
     DbSet<DbChild> Children { get; set;}
-    DbSet<DbParent> Parents { get; set; }
   }
 }

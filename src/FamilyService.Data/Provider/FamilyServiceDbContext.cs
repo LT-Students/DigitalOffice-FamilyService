@@ -12,7 +12,6 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider
   public class FamilyServiceDbContext : DbContext, IDataProvider
   {
     public DbSet<DbChild> Children {get; set;}
-    public DbSet<DbParent> Parents {get; set;}
 
     public FamilyServiceDbContext(DbContextOptions<FamilyServiceDbContext> options)
       : base(options)

@@ -6,7 +6,7 @@ using System;
 namespace LT.DigitalOffice.FamilyService.Data.Provider.Migrations
 {
   [DbContext(typeof(FamilyServiceDbContext))]
-  [Migration("202209051230_InitialTables")]
+  [Migration("202209091712_InitialTables")]
   class InitialTables : Migration
   {
     protected override void Up(MigrationBuilder builder)
@@ -19,25 +19,12 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider.Migrations
           Name = table.Column<string>(nullable: false, maxLength: 45),
           Gender = table.Column<int>(nullable: false),
           BirthDate = table.Column<DateTime>(nullable: false),
-          Info = table.Column<string>(nullable: false, maxLength: 300)
+          Info = table.Column<string>(nullable: false, maxLength: 300),
+          ParentId = table.Column<Guid>(nullable: false)
         },
         constraints: table =>
         {
           table.PrimaryKey($"PK_{DbChild.TableName}", x => x.Id);
-        });
-
-      builder.CreateTable(
-        name: DbParent.TableName,
-        columns: table => new
-        {
-          Id = table.Column<Guid>(nullable: false),
-          FirstName = table.Column<string>(nullable: false, maxLength: 45),
-          LastName = table.Column<string>(nullable: false, maxLength: 45),
-          MiddleName = table.Column<string>(nullable: false, maxLength: 45)
-        },
-        constraints: table =>
-        {
-          table.PrimaryKey($"PK_{DbParent.TableName}", x => x.Id);
         });
     }
   }

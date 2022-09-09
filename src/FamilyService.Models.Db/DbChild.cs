@@ -18,8 +18,7 @@ namespace LT.DigitalOffice.FamilyService.Models.Db
     public int Gender { get; set; }
     public DateTime BirthDate { get; set; }
     public string Info { get; set; }
-
-    public DbParent Parent { get; set; }
+    public Guid ParentId { get; set; }
   }
 
   public class DbChildConfiguration : IEntityTypeConfiguration<DbChild>
@@ -35,18 +34,6 @@ namespace LT.DigitalOffice.FamilyService.Models.Db
       builder
         .Property(x => x.Name)
         .IsRequired();
-
-      builder
-        .Property(x => x.Gender)
-        .IsRequired();
-
-      builder
-        .Property(x => x.BirthDate)
-        .IsRequired();
-
-      builder
-        .HasOne(pc => pc.Parent)
-        .WithMany(p => p.Children);
     }
   }
 }
