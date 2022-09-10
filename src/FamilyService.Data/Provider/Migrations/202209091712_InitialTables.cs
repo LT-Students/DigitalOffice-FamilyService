@@ -18,9 +18,14 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider.Migrations
           Id = table.Column<Guid>(nullable: false),
           Name = table.Column<string>(nullable: false, maxLength: 45),
           Gender = table.Column<int>(nullable: false),
-          BirthDate = table.Column<DateTime>(nullable: false),
+          DateOfBirth = table.Column<DateTime>(nullable: false),
           Info = table.Column<string>(nullable: false, maxLength: 300),
-          ParentId = table.Column<Guid>(nullable: false)
+          ParentId = table.Column<Guid>(nullable: false),
+          IsActive = table.Column<bool>(nullable: false),
+          CreatedBy = table.Column<Guid>(nullable: false),
+          CreatedAtUtc = table.Column<DateTime>(nullable: false),
+          ModifiedBy = table.Column<Guid>(nullable: true),
+          ModifiedAtUtc = table.Column<DateTime>(nullable: true),
         },
         constraints: table =>
         {
