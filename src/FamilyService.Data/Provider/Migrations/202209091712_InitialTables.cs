@@ -1,7 +1,7 @@
-﻿using LT.DigitalOffice.FamilyService.Models.Db;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+using LT.DigitalOffice.FamilyService.Models.Db;
 
 namespace LT.DigitalOffice.FamilyService.Data.Provider.Migrations
 {
