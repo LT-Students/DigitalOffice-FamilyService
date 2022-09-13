@@ -17,7 +17,7 @@ namespace LT.DigitalOffice.FamilyService.Models.Db
     public int Gender { get; set; }
     public DateTime DateOfBirth { get; set; }
     public string Info { get; set; }
-    public Guid ParentId { get; set; }
+    public Guid ParentUserId { get; set; }
     public bool IsActive { get; set; }
     public Guid CreatedBy { get; set; }
     public DateTime CreatedAtUtc { get; set; }

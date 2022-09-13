@@ -20,7 +20,7 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider.Migrations
           Gender = table.Column<int>(nullable: false),
           DateOfBirth = table.Column<DateTime>(nullable: false),
           Info = table.Column<string>(nullable: false, maxLength: 300),
-          ParentId = table.Column<Guid>(nullable: false),
+          ParentUserId = table.Column<Guid>(nullable: false),
           IsActive = table.Column<bool>(nullable: false),
           CreatedBy = table.Column<Guid>(nullable: false),
           CreatedAtUtc = table.Column<DateTime>(nullable: false),
