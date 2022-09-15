@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using LT.DigitalOffice.Kernel.Responses;
+using LT.DigitalOffice.FamilyService.Models.Dto.Requests;
+using LT.DigitalOffice.FamilyService.Business.Commands.Child.Interfaces;
 
 namespace LT.DigitalOffice.FamilyService.Controllers
 {
@@ -7,17 +11,12 @@ namespace LT.DigitalOffice.FamilyService.Controllers
   [ApiController]
   public class FamilyController : ControllerBase
   {
-    [HttpGet("get")]
-    public void GetKidsAsync(
-      [FromQuery] Guid employeeId)
+    [HttpPost("create")]
+    public async Task<OperationResultResponse<Guid?>> CreateAsync(
+      [FromServices] ICreateChildCommand command,
+      [FromBody] CreateChildRequest request)
     {
-
-    }
-    [HttpPost("post")]
-    public void AddKidsAsync(
-      [FromQuery] Guid employeeId)
-    {
-
+      return await command.ExecuteAsync(request);
     }
   }
 }
