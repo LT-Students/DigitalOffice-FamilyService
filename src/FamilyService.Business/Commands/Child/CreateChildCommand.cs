@@ -10,10 +10,10 @@ using LT.DigitalOffice.Kernel.Extensions;
 using LT.DigitalOffice.Kernel.Helpers.Interfaces;
 using LT.DigitalOffice.Kernel.BrokerSupport.AccessValidatorEngine.Interfaces;
 using LT.DigitalOffice.FamilyService.Data.Interfaces;
-using LT.DigitalOffice.FamilyService.Models.Dto.Requests;
 using LT.DigitalOffice.FamilyService.Mappers.Db.Interfaces;
 using LT.DigitalOffice.FamilyService.Validation.Child.Interfaces;
 using LT.DigitalOffice.FamilyService.Business.Commands.Child.Interfaces;
+using LT.DigitalOffice.FamilyService.Models.Dto.Requests.Child;
 
 namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
 {

@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using FluentValidation;
 using LT.DigitalOffice.FamilyService.Data.Interfaces;
-using LT.DigitalOffice.FamilyService.Models.Dto.Requests;
+using LT.DigitalOffice.FamilyService.Models.Dto.Requests.Child;
 using LT.DigitalOffice.FamilyService.Validation.Child.Interfaces;
 
 namespace LT.DigitalOffice.FamilyService.Validation.Child

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using LT.DigitalOffice.FamilyService.Models.Dto.Enums;
 
-namespace LT.DigitalOffice.FamilyService.Models.Dto.Requests
+namespace LT.DigitalOffice.FamilyService.Models.Dto.Requests.Child
 {
   public class CreateChildRequest
   {
