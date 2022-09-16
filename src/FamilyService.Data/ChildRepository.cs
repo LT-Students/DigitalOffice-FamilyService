@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using LT.DigitalOffice.FamilyService.Models.Db;
 using LT.DigitalOffice.FamilyService.Data.Provider;
 using LT.DigitalOffice.FamilyService.Data.Interfaces;
@@ -31,6 +32,14 @@ namespace LT.DigitalOffice.FamilyService.Data
       await _provider.SaveAsync();
 
       return dbChild.Id;
+    }
+
+    public Task<bool> DoesValueExist(Guid ParentUserId, string Name, DateTime DateOfBirth)
+    {
+      return _provider.Children
+        .AnyAsync(c => c.ParentUserId == ParentUserId
+        && c.Name == Name
+        && c.DateOfBirth == DateOfBirth);
     }
   }
 }

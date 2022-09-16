@@ -3,6 +3,7 @@
 	<Import Project="$(ProjectDir)..\..\Common.Configurations.targets" />
 
 	<ItemGroup>
+	  <ProjectReference Include="..\FamilyService.Data\FamilyService.Data.csproj" />
 	  <ProjectReference Include="..\FamilyService.Models.Dto\FamilyService.Models.Dto.csproj" />
 	</ItemGroup>
 

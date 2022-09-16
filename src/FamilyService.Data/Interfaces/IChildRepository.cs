@@ -9,5 +9,6 @@ namespace LT.DigitalOffice.FamilyService.Data.Interfaces
   public interface IChildRepository
   {
     Task<Guid?> CreateAsync(DbChild dbChild);
+    Task<bool> DoesValueExist(Guid ParentUserId, string Name, DateTime DateOfBirth);
   }
 }

@@ -19,7 +19,7 @@ namespace LT.DigitalOffice.FamilyService.Mappers.Db
         Id = Guid.NewGuid(),
         Name = request.Name,
         Gender = (int)request.Gender,
-        DateOfBirth = request.DateOfBirth,
+        DateOfBirth = request.DateOfBirth.Date,
         Info = request.Info,
         ParentUserId = request.ParentUserId,
         IsActive = true,
