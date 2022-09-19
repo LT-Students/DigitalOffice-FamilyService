@@ -38,8 +38,7 @@ namespace LT.DigitalOffice.FamilyService.Data
     {
       return _provider.Children
         .AnyAsync(c => c.ParentUserId == ParentUserId
-        && c.Name == Name
-        && c.DateOfBirth == DateOfBirth);
+          && c.Name == Name && c.DateOfBirth == DateOfBirth);
     }
   }
 }

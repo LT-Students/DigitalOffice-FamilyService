@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-
 namespace LT.DigitalOffice.FamilyService.Models.Db
 {
   public partial class DbChild

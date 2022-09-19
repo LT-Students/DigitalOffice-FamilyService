@@ -61,7 +61,7 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
       OperationResultResponse<Guid?> response = new();
 
       response.Body = await _childRepository.CreateAsync(_dbChildMapper.Map(request,
-         _httpContextAccessor.HttpContext.GetUserId()));
+        _httpContextAccessor.HttpContext.GetUserId()));
 
       if (response.Body is null)
       {

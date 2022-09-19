@@ -34,7 +34,7 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
 
       RuleFor(r => r)
         .MustAsync(async (r, _, _) => !await _userRepository
-        .DoesValueExist(r.ParentUserId, r.Name, r.DateOfBirth.Date))
+          .DoesValueExist(r.ParentUserId, r.Name, r.DateOfBirth.Date))
         .WithMessage("This child already exists.");
     }
   }
