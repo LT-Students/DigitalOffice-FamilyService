@@ -44,7 +44,8 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
 
     public async Task<OperationResultResponse<Guid?>> ExecuteAsync(CreateChildRequest request)
     {
-      if (!await _accessValidator.HasRightsAsync(Rights.AddEditRemoveUsers))
+      if (!(await _accessValidator.HasRightsAsync(Rights.AddEditRemoveUsers) 
+        ||  _httpContextAccessor.HttpContext.GetUserId() == request.ParentUserId))
       {
         return _responseCreator.CreateFailureResponse<Guid?>(HttpStatusCode.Forbidden);
       }
