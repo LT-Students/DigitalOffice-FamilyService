@@ -16,7 +16,7 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
     {
       RuleFor(r => r.Name)
         .Cascade(CascadeMode.Stop)
-        .MinimumLength(1).WithMessage("Minimum lenght is 1.")
+        .NotEmpty().WithMessage("Child's name mustn't be empty.")
         .MaximumLength(45).WithMessage("Maximum lenght is 45.")
         .Must(n => NameRegex.IsMatch(n.Trim()))
         .WithMessage("Name contains invalid characters.");
@@ -25,11 +25,10 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
         .WithMessage("This gender is not specified.");
 
       RuleFor(r => r.DateOfBirth)
-        .Must(d => (DateTime.UtcNow.Year - d.Year) <= 18)
+        .Must(d => ((DateTime.UtcNow - d).TotalDays / 365.2425) < 18)
         .WithMessage("Age mustn't be greater than 18.");
 
       RuleFor(r => r.Info)
-        .MinimumLength(0).WithMessage("Minimum lenght is 0.")
         .MaximumLength(300).WithMessage("Maximum lenght is 300.");
 
       RuleFor(r => r)

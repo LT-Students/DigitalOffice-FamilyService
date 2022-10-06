@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LT.DigitalOffice.FamilyService.Models.Db
 {
-  public partial class DbChild
+  public class DbChild
   {
     public const string TableName = "Children";
 

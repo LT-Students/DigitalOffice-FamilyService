@@ -9,6 +9,6 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider
   [AutoInject(InjectType.Scoped)]
   public interface IDataProvider : IBaseDataProvider
   {
-    DbSet<DbChild> Children { get; set;}
+    DbSet<DbChild> Children { get; set; }
   }
 }

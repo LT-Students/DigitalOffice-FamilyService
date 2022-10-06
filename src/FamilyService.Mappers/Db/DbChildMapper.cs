@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
+using LT.DigitalOffice.Kernel.Extensions;
 using LT.DigitalOffice.FamilyService.Models.Db;
 using LT.DigitalOffice.FamilyService.Mappers.Db.Interfaces;
 using LT.DigitalOffice.FamilyService.Models.Dto.Requests.Child;
@@ -7,7 +9,15 @@ namespace LT.DigitalOffice.FamilyService.Mappers.Db
 {
   public class DbChildMapper : IDbChildMapper
   {
-    public DbChild Map(CreateChildRequest request, Guid creatorId)
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public DbChildMapper(
+      IHttpContextAccessor httpContextAccessor)
+    {
+      _httpContextAccessor = httpContextAccessor;
+    }
+
+    public DbChild Map(CreateChildRequest request)
     {
       if (request is null)
       {
@@ -23,7 +33,7 @@ namespace LT.DigitalOffice.FamilyService.Mappers.Db
         Info = request.Info,
         ParentUserId = request.ParentUserId,
         IsActive = true,
-        CreatedBy = creatorId,
+        CreatedBy = _httpContextAccessor.HttpContext.GetUserId(),
         CreatedAtUtc = DateTime.UtcNow
       };
     }

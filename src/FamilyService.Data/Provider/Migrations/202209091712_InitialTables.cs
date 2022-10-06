@@ -16,10 +16,10 @@ namespace LT.DigitalOffice.FamilyService.Data.Provider.Migrations
         columns: table => new
         {
           Id = table.Column<Guid>(nullable: false),
-          Name = table.Column<string>(nullable: false, maxLength: 45),
+          Name = table.Column<string>(nullable: false),
           Gender = table.Column<int>(nullable: false),
           DateOfBirth = table.Column<DateTime>(nullable: false),
-          Info = table.Column<string>(nullable: false, maxLength: 300),
+          Info = table.Column<string>(nullable: true),
           ParentUserId = table.Column<Guid>(nullable: false),
           IsActive = table.Column<bool>(nullable: false),
           CreatedBy = table.Column<Guid>(nullable: false),

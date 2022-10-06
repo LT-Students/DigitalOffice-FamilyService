@@ -44,8 +44,8 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
 
     public async Task<OperationResultResponse<Guid?>> ExecuteAsync(CreateChildRequest request)
     {
-      if (!(await _accessValidator.HasRightsAsync(Rights.AddEditRemoveUsers) 
-        ||  _httpContextAccessor.HttpContext.GetUserId() == request.ParentUserId))
+      if (!(_httpContextAccessor.HttpContext.GetUserId() == request.ParentUserId 
+        || await _accessValidator.HasRightsAsync(Rights.AddEditRemoveUsers)))
       {
         return _responseCreator.CreateFailureResponse<Guid?>(HttpStatusCode.Forbidden);
       }
@@ -61,8 +61,7 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
 
       OperationResultResponse<Guid?> response = new();
 
-      response.Body = await _childRepository.CreateAsync(_dbChildMapper.Map(request,
-        _httpContextAccessor.HttpContext.GetUserId()));
+      response.Body = await _childRepository.CreateAsync(_dbChildMapper.Map(request));
 
       if (response.Body is null)
       {

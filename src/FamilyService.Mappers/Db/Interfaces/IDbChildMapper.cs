@@ -8,6 +8,6 @@ namespace LT.DigitalOffice.FamilyService.Mappers.Db.Interfaces
   [AutoInject]
   public interface IDbChildMapper
   {
-    DbChild Map(CreateChildRequest request, Guid creatorId);
+    DbChild Map(CreateChildRequest request);
   }
 }
