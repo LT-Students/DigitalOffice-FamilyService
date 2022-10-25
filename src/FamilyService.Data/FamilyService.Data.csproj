@@ -5,6 +5,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\FamilyService.Models.Db\FamilyService.Models.Db.csproj" />
 	  <ProjectReference Include="..\FamilyService.Models.Dto\FamilyService.Models.Dto.csproj" />
+
 	</ItemGroup>
 	
 </Project>
