@@ -21,7 +21,10 @@ namespace LT.DigitalOffice.FamilyService.Data
       IQueryable<DbChild> dbChildren,
       List<Guid> departmentsUsers)
     {
-      dbChildren = dbChildren.Where(dbChild => departmentsUsers.Contains(dbChild.ParentUserId));
+      if (departmentsUsers is not null)
+      {
+        dbChildren = dbChildren.Where(dbChild => departmentsUsers.Contains(dbChild.ParentUserId));
+      }
 
       dbChildren = dbChildren.Where(c => c.IsActive);
       
@@ -79,15 +82,16 @@ namespace LT.DigitalOffice.FamilyService.Data
     public async Task<(List<DbChild> dbChildren, int totalCount)> FindAsync(FindChildrenFilter filter, List<Guid> departmentsUsers)
     {
       if (filter is null
-          || (filter.Department is not null
-              && !departmentsUsers.Any()))
+        || (filter.Department is not null 
+          && !departmentsUsers.Any()))
       {
         return default;
       }
 
       IQueryable<DbChild> childrenQuery = CreateFindPredicates(
         filter,
-        _provider.Children.AsQueryable(), departmentsUsers);
+        _provider.Children.AsQueryable(),
+        departmentsUsers);
 
        return (
         await childrenQuery.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync(),
