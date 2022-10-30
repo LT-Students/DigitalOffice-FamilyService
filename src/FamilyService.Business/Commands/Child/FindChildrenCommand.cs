@@ -54,24 +54,17 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
 
       FindResultResponse<ChildInfo> response = new();
 
-      List<Guid> departmentsUsers = filter.Department is not null
+      List<Guid> departmentsUsers = filter.Departments is not null
         ? await _departmentService.GetDepartmentUserAsync(
-          filter.Department,
+          filter.Departments,
           response.Errors)
         : null;
       
       (List<DbChild> dbChildren, int totalCount) = await _childRepository.FindAsync(filter, departmentsUsers);
 
-      response.Body = new();
-      
-      if (dbChildren is not null)
-      {
-        response.Body.AddRange(dbChildren.Select(dbChild => _childInfoMapper.Map(dbChild)));
-
-        response.TotalCount = totalCount;
-      }
-
-      return response;
+      return new FindResultResponse<ChildInfo>(
+        body: dbChildren.Select(dbChild => _childInfoMapper.Map(dbChild)).ToList(),
+        totalCount: totalCount);
     }
   }
 }

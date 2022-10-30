@@ -21,6 +21,6 @@ namespace LT.DigitalOffice.FamilyService.Models.Dto.Requests.Child.Filters
     public Gender? Gender { get; set; }
 
     [FromQuery(Name = "department")]
-    public List<Guid> Department { get; set; }
+    public List<Guid> Departments { get; set; }
   }
 }

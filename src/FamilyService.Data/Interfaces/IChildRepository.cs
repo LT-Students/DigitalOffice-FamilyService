@@ -11,7 +11,7 @@ namespace LT.DigitalOffice.FamilyService.Data.Interfaces
   public interface IChildRepository
   {
     Task<Guid?> CreateAsync(DbChild dbChild);
-    Task<bool> DoesValueExist(Guid ParentUserId, string Name, DateTime DateOfBirth);
+    Task<bool> DoesValueExist(Guid parentUserId, string name, DateTime dateOfBirth);
     Task<(List<DbChild> dbChildren, int totalCount)> FindAsync(FindChildrenFilter filter, List<Guid> departmentsUsers);
   }
 }
