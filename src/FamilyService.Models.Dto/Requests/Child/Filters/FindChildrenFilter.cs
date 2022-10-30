@@ -12,10 +12,10 @@ namespace LT.DigitalOffice.FamilyService.Models.Dto.Requests.Child.Filters
     public Guid? ParentUserId { get; set; }
 
     [FromQuery(Name = "loweragelimit")]
-    public DateTime? LowerAgeLimit { get; set; }
+    public int? LowerAgeLimit { get; set; }
 
     [FromQuery(Name = "upperagelimit")]
-    public DateTime? UpperAgeLimit { get; set; }
+    public int? UpperAgeLimit { get; set; }
 
     [FromQuery(Name = "gender")]
     public Gender? Gender { get; set; }

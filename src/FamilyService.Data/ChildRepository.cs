@@ -25,8 +25,12 @@ namespace LT.DigitalOffice.FamilyService.Data
         return query.Where(dbChild => false);
       }
       
-      query = query.Where(dbChild => departmentsUsers.Contains(dbChild.ParentUserId));
-
+      if(departmentsUsers is not null 
+        && departmentsUsers.Any())
+      {
+        query = query.Where(dbChild => departmentsUsers.Contains(dbChild.ParentUserId));
+      }
+      
       if (filter.ParentUserId.HasValue)
       {
         query = query.Where(ch => ch.ParentUserId == filter.ParentUserId);
@@ -34,12 +38,12 @@ namespace LT.DigitalOffice.FamilyService.Data
 
       if (filter.LowerAgeLimit.HasValue)
       {
-        query = query.Where(ch => ch.DateOfBirth >= filter.LowerAgeLimit);
+        query = query.Where(ch => ch.DateOfBirth <= DateTime.UtcNow.AddYears(-filter.LowerAgeLimit.Value));
       }
 
       if (filter.UpperAgeLimit.HasValue)
       {
-        query = query.Where(ch => ch.DateOfBirth <= filter.UpperAgeLimit);
+        query = query.Where(ch => ch.DateOfBirth >= DateTime.UtcNow.AddYears(-filter.UpperAgeLimit.Value));
       }
 
       if (filter.Gender.HasValue)
