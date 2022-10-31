@@ -19,13 +19,7 @@ namespace LT.DigitalOffice.FamilyService.Data
       IQueryable<DbChild> query,
       List<Guid> departmentsUsers)
     {
-      if (filter.Departments is not null 
-        && !departmentsUsers.Any())
-      {
-        return query.Where(dbChild => false);
-      }
-      
-      if(departmentsUsers is not null 
+      if (departmentsUsers is not null
         && departmentsUsers.Any())
       {
         query = query.Where(dbChild => departmentsUsers.Contains(dbChild.ParentUserId));
@@ -85,6 +79,12 @@ namespace LT.DigitalOffice.FamilyService.Data
       if (filter is null)
       {
         return default;
+      }
+      
+      if (filter.Departments is not null 
+          && !departmentsUsers.Any())
+      {
+        return (new List<DbChild>(), 0);
       }
 
       IQueryable<DbChild> childrenQuery = CreateFindPredicates(
