@@ -62,7 +62,7 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
       
       (List<DbChild> dbChildren, int totalCount) = await _childRepository.FindAsync(null, departmentsUsers);
 
-      response.Body = dbChildren?.Select(dbChild => _childInfoMapper.Map(dbChild)).ToList();
+      response.Body = dbChildren?.Select(_childInfoMapper.Map).ToList();
       response.TotalCount = totalCount;
       
       return  response;

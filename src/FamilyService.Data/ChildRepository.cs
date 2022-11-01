@@ -81,8 +81,8 @@ namespace LT.DigitalOffice.FamilyService.Data
         return default;
       }
       
-      if (filter.Departments is not null 
-          && !departmentsUsers.Any())
+      if (filter.Departments is not null
+        && !departmentsUsers.Any())
       {
         return (new List<DbChild>(), 0);
       }
