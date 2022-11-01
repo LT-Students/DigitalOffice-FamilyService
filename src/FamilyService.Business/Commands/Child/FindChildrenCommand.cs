@@ -60,11 +60,12 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
           response.Errors)
         : null;
       
-      (List<DbChild> dbChildren, int totalCount) = await _childRepository.FindAsync(filter, departmentsUsers);
+      (List<DbChild> dbChildren, int totalCount) = await _childRepository.FindAsync(null, departmentsUsers);
 
-      return new FindResultResponse<ChildInfo>(
-        body: dbChildren.Select(dbChild => _childInfoMapper.Map(dbChild)).ToList(),
-        totalCount: totalCount);
+      response.Body = dbChildren.Select(dbChild => _childInfoMapper.Map(dbChild)).ToList();
+      response.TotalCount = totalCount;
+      
+      return  response;
     }
   }
 }
