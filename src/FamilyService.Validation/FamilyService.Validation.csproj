@@ -7,4 +7,19 @@
 	  <ProjectReference Include="..\FamilyService.Models.Dto\FamilyService.Models.Dto.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <EmbeddedResource Update="Child\Resources\ChildValidatorResource.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ChildValidatorResource.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Child\Resources\ChildValidatorResource.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ChildValidatorResource.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
 </Project>
