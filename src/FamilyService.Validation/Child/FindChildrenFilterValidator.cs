@@ -29,9 +29,6 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
           .Must(f => f.LowerAgeLimit < f.UpperAgeLimit)
           .WithMessage("Lower age limit must be less than upper age limit.");
       });
-      
-      RuleFor(f=> f.Gender)
-        .IsInEnum().WithMessage("This gender is not specified.");
     }
   }
 }
