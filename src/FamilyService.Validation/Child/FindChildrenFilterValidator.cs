@@ -1,9 +1,6 @@
-using System.Threading;
-using System.Globalization;
 using FluentValidation;
 using LT.DigitalOffice.FamilyService.Models.Dto.Requests.Child.Filters;
 using LT.DigitalOffice.FamilyService.Validation.Child.Interfaces;
-using LT.DigitalOffice.FamilyService.Validation.Child.Resources;
 
 namespace LT.DigitalOffice.FamilyService.Validation.Child
 {
@@ -11,14 +8,12 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
   {
     public FindChildrenFilterValidator()
     {
-      Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
-      
       When(x => x.LowerAgeLimit != null , () => {
         RuleFor(f => f.LowerAgeLimit)
           .Cascade(CascadeMode.Stop)
           .NotNull()
           .InclusiveBetween(0, 17)
-          .WithMessage($"{nameof(FindChildrenFilter.LowerAgeLimit)} {ChildValidatorResource.IncorrectAge}");
+          .WithMessage("Age must be between 0 (inclusive) and 17 (inclusive).");
       });
       
       When(x => x.UpperAgeLimit != null , () => {
@@ -26,17 +21,17 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
           .Cascade(CascadeMode.Stop)
           .NotNull()
           .InclusiveBetween(0, 17)
-          .WithMessage($"{nameof(FindChildrenFilter.UpperAgeLimit)} {ChildValidatorResource.IncorrectAge}"); 
+          .WithMessage("Age must be between 0 (inclusive) and 17 (inclusive)."); 
       });
       
       When(x => (x.LowerAgeLimit != null && x.UpperAgeLimit != null), () => {
         RuleFor(f => f)
           .Must(f => f.LowerAgeLimit < f.UpperAgeLimit)
-          .WithMessage(ChildValidatorResource.IncorrectAgeRange);
+          .WithMessage("Lower age limit must be less than upper age limit.");
       });
       
       RuleFor(f=> f.Gender)
-        .IsInEnum().WithMessage($"{nameof(FindChildrenFilter.Gender)} {ChildValidatorResource.IsNotInEnum}");
+        .IsInEnum().WithMessage("This gender is not specified.");
     }
   }
 }
