@@ -2,7 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
+using LT.DigitalOffice.Kernel.Extensions;
 using LT.DigitalOffice.FamilyService.Models.Db;
 using LT.DigitalOffice.FamilyService.Data.Provider;
 using LT.DigitalOffice.FamilyService.Data.Interfaces;
@@ -13,6 +16,7 @@ namespace LT.DigitalOffice.FamilyService.Data
   public class ChildRepository : IChildRepository
   {
     private readonly IDataProvider _provider;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     private IQueryable<DbChild> CreateFindPredicates(
       FindChildrenFilter filter,
@@ -49,9 +53,11 @@ namespace LT.DigitalOffice.FamilyService.Data
     }
 
     public ChildRepository(
-      IDataProvider provider)
+      IDataProvider provider,
+      IHttpContextAccessor httpContextAccessor)
     {
       _provider = provider;
+      _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<Guid?> CreateAsync(DbChild dbChild)
@@ -72,6 +78,11 @@ namespace LT.DigitalOffice.FamilyService.Data
       return _provider.Children
         .AnyAsync(c => c.ParentUserId == parentUserId
           && c.Name == name && c.DateOfBirth == dateOfBirth);
+    }
+
+    public Task<DbChild> GetAsync(Guid childId)
+    {
+      return _provider.Children.FirstOrDefaultAsync(c => c.Id == childId);
     }
 
     public async Task<(List<DbChild> dbChildren, int totalCount)> FindAsync(FindChildrenFilter filter, List<Guid> departmentsUsers)
@@ -95,6 +106,21 @@ namespace LT.DigitalOffice.FamilyService.Data
        return (
         await childrenQuery.Skip(filter.SkipCount).Take(filter.TakeCount).ToListAsync(),
         await childrenQuery.CountAsync());
+    }
+
+    public async Task<bool> EditAsync(DbChild dbChild, JsonPatchDocument<DbChild> request)
+    {
+      if (dbChild is null || request is null)
+      {
+        return false;
+      }
+      
+      request.ApplyTo(dbChild);
+      dbChild.ModifiedBy = _httpContextAccessor.HttpContext.GetUserId();
+      dbChild.ModifiedAtUtc = DateTime.Now;
+      await _provider.SaveAsync();
+
+      return true;
     }
   }
 }

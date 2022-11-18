@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.JsonPatch;
 using LT.DigitalOffice.Kernel.Responses;
 using LT.DigitalOffice.FamilyService.Business.Commands.Child.Interfaces;
 using LT.DigitalOffice.FamilyService.Models.Dto.Models;
@@ -27,6 +28,15 @@ namespace LT.DigitalOffice.FamilyService.Controllers
       [FromQuery] FindChildrenFilter filter)
     {
       return await command.ExecuteAsync(filter);
+    }
+    
+    [HttpPatch("edit")]
+    public async Task<OperationResultResponse<bool>> EditAsync(
+      [FromServices] IEditChildCommand command,
+      [FromQuery] Guid childId,
+      [FromBody] JsonPatchDocument<EditChildRequest> request)
+    {
+      return await command.ExecuteAsync(childId, request);
     }
   }
 }
