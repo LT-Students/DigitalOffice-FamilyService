@@ -64,7 +64,7 @@ namespace LT.DigitalOffice.FamilyService.Business.Commands.Child
         return _responseCreator.CreateFailureResponse<bool>(HttpStatusCode.BadRequest, errors);
       }
 
-      return new() { Body = await _childRepository.EditAsync(dbChild, _mapper.Map(request)) };
+      return new(body: await _childRepository.EditAsync(dbChild, _mapper.Map(request)));
     }
   }
 }

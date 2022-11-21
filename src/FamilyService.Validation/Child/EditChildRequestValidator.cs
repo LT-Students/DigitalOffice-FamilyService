@@ -38,7 +38,8 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
       AddFailureForPropertyIf(
         nameof(EditChildRequest.Name),
         o => o == OperationType.Replace,
-        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> {
+        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> 
+        {
           { x=> !string.IsNullOrEmpty(x.value?.ToString().Trim()), "Child's name mustn't be empty."},
           { x => NameRegex.IsMatch(x.value.ToString().Trim()), "Name contains invalid characters." },
           { x => x.value.ToString().Trim().Length <= 45, "Maximum name lenght is 45."}
@@ -47,21 +48,24 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
       AddFailureForPropertyIf(
         nameof(EditChildRequest.Gender),
         o => o == OperationType.Replace,
-        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> {
+        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> 
+        {
           { x => Enum.TryParse(typeof(Gender), x.value?.ToString(), out _), "This gender is not specified."}
         });
       
       AddFailureForPropertyIf(
         nameof(EditChildRequest.IsActive),
         o => o == OperationType.Replace,
-        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> {
-          { x => bool.TryParse(x.value?.ToString(), out _), "Incorrect format IsActive"}
+        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> 
+        {
+          { x => bool.TryParse(x.value?.ToString(), out _), "Invalid format for IsActive"}
         });
       
       AddFailureForPropertyIf(
         nameof(EditChildRequest.Info),
         o => o == OperationType.Replace,
-        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> {
+        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> 
+        {
           { x=> !string.IsNullOrEmpty(x.value?.ToString()), "Information mustn't be empty."},
           { x => x.value.ToString().Trim().Length <= 300, "Maximum information lenght is 300."}
         }, CascadeMode.Stop);
