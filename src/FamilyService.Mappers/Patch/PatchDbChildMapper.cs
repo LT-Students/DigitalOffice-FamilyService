@@ -29,6 +29,14 @@ namespace LT.DigitalOffice.FamilyService.Mappers.Patch
           continue;
         }
         
+        if (item.path.EndsWith(nameof(EditChildRequest.DateOfBirth), StringComparison.OrdinalIgnoreCase))
+        {
+          patchDbChild.Operations.Add(new Operation<DbChild>(
+            item.op, item.path, item.from, DateTime.Parse(item.value.ToString()).Date));
+          
+          continue;
+        }
+        
         patchDbChild.Operations.Add(new Operation<DbChild>(item.op, item.path, item.from, item.value));
       }
 
