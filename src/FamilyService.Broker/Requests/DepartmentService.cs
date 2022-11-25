@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using MassTransit;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using LT.DigitalOffice.Kernel.BrokerSupport.Helpers;
 using LT.DigitalOffice.Models.Broker.Requests.Department;
@@ -16,16 +15,13 @@ namespace LT.DigitalOffice.FamilyService.Broker.Requests
   {
     private readonly ILogger<DepartmentService> _logger;
     private readonly IRequestClient<IGetDepartmentsUsersRequest> _rcGetDepartmentsUsers;
-    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public DepartmentService(
       ILogger<DepartmentService> logger,
-      IRequestClient<IGetDepartmentsUsersRequest> rcGetDepartmentsUsers,
-      IHttpContextAccessor httpContextAccessor)
+      IRequestClient<IGetDepartmentsUsersRequest> rcGetDepartmentsUsers)
     {
       _logger = logger;
       _rcGetDepartmentsUsers = rcGetDepartmentsUsers;
-      _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<List<Guid>> GetDepartmentUserAsync(List<Guid> departmentIds, List<string> errors)
