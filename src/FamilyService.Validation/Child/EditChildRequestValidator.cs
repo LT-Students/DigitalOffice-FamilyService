@@ -22,16 +22,20 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
       RequestedOperation = requestedOperation;
       Context = context;
 
+      DateTime dateOfBirth = new();
+
       AddСorrectPaths(
         new List<string> {
           nameof(EditChildRequest.Name),
           nameof(EditChildRequest.Gender),
+          nameof(EditChildRequest.DateOfBirth),
           nameof(EditChildRequest.IsActive),
           nameof(EditChildRequest.Info)
         });
 
       AddСorrectOperations(nameof(EditChildRequest.Name), new List<OperationType> { OperationType.Replace });
       AddСorrectOperations(nameof(EditChildRequest.Gender), new List<OperationType> { OperationType.Replace });
+      AddСorrectOperations(nameof(EditChildRequest.DateOfBirth), new List<OperationType> { OperationType.Replace });
       AddСorrectOperations(nameof(EditChildRequest.IsActive), new List<OperationType> { OperationType.Replace });
       AddСorrectOperations(nameof(EditChildRequest.Info), new List<OperationType> { OperationType.Replace });
       
@@ -54,11 +58,20 @@ namespace LT.DigitalOffice.FamilyService.Validation.Child
         });
       
       AddFailureForPropertyIf(
+        nameof(EditChildRequest.DateOfBirth),
+        o => o == OperationType.Replace,
+        new Dictionary<Func<Operation<EditChildRequest>, bool>, string> 
+        {
+          { x => DateTime.TryParse(x.value?.ToString(), out dateOfBirth), "Invalid format for DateOfBirth." },
+          { x => dateOfBirth.Date > DateTime.UtcNow.Date.AddYears(-18), "Age should be less than 18." }
+        }, CascadeMode.Stop);
+      
+      AddFailureForPropertyIf(
         nameof(EditChildRequest.IsActive),
         o => o == OperationType.Replace,
         new Dictionary<Func<Operation<EditChildRequest>, bool>, string> 
         {
-          { x => bool.TryParse(x.value?.ToString(), out _), "Invalid format for IsActive" }
+          { x => bool.TryParse(x.value?.ToString(), out _), "Invalid format for IsActive." }
         });
       
       AddFailureForPropertyIf(

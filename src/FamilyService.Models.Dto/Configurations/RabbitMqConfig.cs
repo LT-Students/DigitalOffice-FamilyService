@@ -1,5 +1,6 @@
 ﻿using LT.DigitalOffice.Kernel.BrokerSupport.Attributes;
 using LT.DigitalOffice.Kernel.BrokerSupport.Configurations;
+using LT.DigitalOffice.Models.Broker.Common;
 using LT.DigitalOffice.Models.Broker.Requests.Department;
 
 namespace LT.DigitalOffice.FamilyService.Models.Dto.Configurations
@@ -10,5 +11,10 @@ namespace LT.DigitalOffice.FamilyService.Models.Dto.Configurations
     
     [AutoInjectRequest(typeof(IGetDepartmentsUsersRequest))]
     public string GetDepartmentsUsersEndpoint { get; set; }
+    
+    //User
+    
+    [AutoInjectRequest(typeof(ICheckUsersExistence))]
+    public string CheckUsersExistenceEndpoint { get; set; }
   }
 }
